@@ -1,0 +1,133 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+}
+
+$color-bg-dark: #e9e8e8;
+$color-bg-light: #eeeeee;
+$color-search: #aaa;
+$color-accent: #e687af;
+$color-font-dark: #20262e;
+$color-font-light: #cccccc;
+$color-heart-light: #b9b1b1;
+$color-heart-dark: #663399; 
+$color-shadow: 0 0 10px 2px rgba(0, 0, 0, 0.1);
+
+body {
+  background-color: $color-bg-dark;
+  font-family: "Poppins", sans-serif;
+
+  min-height: 100vh;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+img {
+  max-width: 100%;
+}
+.mobile-container {
+  background-color: $color-bg-light;
+  box-shadow: $color-shadow;
+}
+
+header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  input {
+    background-color: $color-search;
+    color: $color-font-light;
+    border: none;
+    font-size: 1rem;
+    border-radius: 0.2rem;
+    padding: 0.5rem 1rem;
+  }
+  button {
+    background-color: transparent;
+    border: none;
+    color: $color-font-dark;
+    margin-left: 0.5rem;
+    font-size: 1.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+.fav-container {
+  background-color: $color-accent;
+  padding: 0.25rem 1rem;
+  text-align: center;
+}
+
+.fav-meals {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  list-style-type: none;
+  padding: 0;
+  li {
+    width: 5rem;
+    img {
+      border: 2px solid $color-bg-light;
+      border-radius: 50%;
+      box-shadow: $color-shadow;
+      object-fit: cover;
+      height: 4rem;
+      width: 4rem;
+    }
+    span {
+      font-size: 0.8rem;
+    }
+  }
+}
+
+.meal {
+  border-radius: 0.5rem;
+  box-shadow: $color-shadow;
+  margin: 1rem;
+  .meal-header {
+    position: relative;
+    .random {
+      position: absolute;
+      top: 1rem;
+      background-color: $color-bg-light;
+      padding: 0.25rem 1rem;
+      border-top-right-radius: 0.3rem;
+      border-bottom-right-radius: 0.3rem;
+    }
+    img {
+      object-fit: cover;
+      height: 20rem;
+      width: 100%;
+      border-top-left-radius: 0.5rem;
+      border-top-right-radius: 0.5rem;
+    }
+  }
+  .meal-body {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.5rem 1rem 1rem;
+    h4 {
+      font-size: 1.2rem;
+    }
+    .fav-btn {
+        background-color: transparent;
+        border: none;
+        color: $color-heart-light;
+        cursor: pointer;
+        font-size: 1.2rem;
+        .active {
+            color: $color-heart-dark;
+        }
+    }
+  }
+}
