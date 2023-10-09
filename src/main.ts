@@ -3,25 +3,23 @@ import "./styles/style.css";
 document.querySelector<HTMLDivElement>("#app")!.innerHTML = /*html*/ `
     <div class="mobile-container">
       <header>
-        <input type="text" class="text" placeholder="Search your Meal" />
+        <input type="text" id="search-term" placeholder="search your meal" />
         <button id="search"><i class="bx bx-search"></i></button>
       </header>
       <div class="fav-container">
         <h3>Favorite Meal</h3>
-        <ul class="fav-meals" id="fav-meals">
-   
-        </ul>
+        <ul class="fav-meals" id="fav-meals"></ul>
       </div>
-      <div class="meals" id="meals">
-        
-        
-      </div>
+      <div class="meals" id="meals"></div>
     </div>
 
 `;
 
-const meals = document.getElementById("meals");
+const mealsEl = document.getElementById("meals");
 const favoriteContainer = document.getElementById("fav-meals");
+
+const searchTerm = document.getElementById("search-term") as HTMLInputElement;
+const searchBtn = document.getElementById("search");
 
 getRandomMeal();
 fetchFavMeals();
@@ -59,7 +57,6 @@ async function getMealsBySearch(term: string) {
   const meals = mealsData.meals;
 
   return meals;
-
 }
 
 function addMeal(mealData: any, random = false) {
@@ -92,11 +89,17 @@ function addMeal(mealData: any, random = false) {
       addMealLS(mealData.idMeal);
       btn.classList.add("active");
     }
-    
+
+    // clean the container
+    favoriteContainer.innerHTML = "";
+    fetchFavMeals();
   });
 
+  meal.addEventListener("click", () => {
+    showMealInfo(mealData);
+  });
 
-  meals.appendChild(meal);
+  mealsEl.appendChild(meal);
 }
 
 function addMealLS(mealId: string) {
@@ -117,7 +120,7 @@ function removeMealLS(mealId: string) {
 function getMealsLS() {
   const mealIds = JSON.parse(localStorage.getItem("mealIds") || "[]");
 
-  return mealIds === null ? [] : mealIds;
+  return mealIds;
 }
 
 async function fetchFavMeals() {
@@ -129,13 +132,11 @@ async function fetchFavMeals() {
 
     addMealFav(meal);
   }
-
-  // add them to the screen
 }
 
-function addMealFav(mealData) {
+function addMealFav(mealData: any) {
   const favMeal = document.createElement("li");
-  
+
   favMeal.innerHTML = /*html*/ `
   <img
     src="${mealData.strMealThumb}"
@@ -144,5 +145,29 @@ function addMealFav(mealData) {
  
   `;
 
-  favoriteContainer.appendChild(meal);
+  const removeBtn = document.createElement("button");
+  removeBtn.classList.add("remove-fav-btn");
+  removeBtn.innerText = "Remove";
+
+  removeBtn.addEventListener("click", () => {
+    removeMealLS(mealData.idMeal);
+
+    favMeal.remove();
+  });
+
+  favMeal.appendChild(removeBtn);
+  favoriteContainer.appendChild(favMeal);
 }
+
+// clear
+searchBtn.addEventListener("click", async () => {
+  const search = searchTerm.value;
+  const meals = await getMealsBySearch(search);
+
+  if (meals) {
+    mealsEl.innerHTML = "";
+    meals.forEach((meal) => {
+      addMeal(meal);
+    });
+  }
+});
