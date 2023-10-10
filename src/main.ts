@@ -15,11 +15,11 @@ document.querySelector<HTMLDivElement>("#app")!.innerHTML = /*html*/ `
 
 `;
 
-const mealsEl = document.getElementById("meals");
-const favoriteContainer = document.getElementById("fav-meals");
+const mealsEl = document.getElementById("meals") as HTMLElement;
+const favoriteContainer = document.getElementById("fav-meals") as HTMLElement;
 
 const searchTerm = document.getElementById("search-term") as HTMLInputElement;
-const searchBtn = document.getElementById("search");
+const searchBtn = document.getElementById("search") as HTMLButtonElement;
 
 getRandomMeal();
 fetchFavMeals();
@@ -83,10 +83,10 @@ function addMeal(mealData: any, random = false) {
   btn.addEventListener("click", () => {
     const mealId = mealData.idMeal;
     if (btn.classList.contains("active")) {
-      removeMealLS(mealData.idMeal);
+      removeMealLS(mealId);
       btn.classList.remove("active");
     } else {
-      addMealLS(mealData.idMeal);
+      addMealLS(mealId);
       btn.classList.add("active");
     }
 

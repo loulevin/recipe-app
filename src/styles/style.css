@@ -78,15 +78,15 @@ header button {
   font-size: 0.8rem;
 }
 
-.meal {
+.meals {
   border-radius: 0.5rem;
   box-shadow: 0 0 10px 2px rgba(0, 0, 0, 0.1);
   margin: 1rem;
 }
-.meal .meal-header {
+.meals .meal-header {
   position: relative;
 }
-.meal .meal-header .random {
+.meals .meal-header .random {
   position: absolute;
   top: 1rem;
   background-color: #eeeeee;
@@ -94,7 +94,7 @@ header button {
   border-top-right-radius: 0.3rem;
   border-bottom-right-radius: 0.3rem;
 }
-.meal .meal-header img {
+.meals .meal-header img {
   -o-object-fit: cover;
      object-fit: cover;
   height: 20rem;
@@ -102,22 +102,22 @@ header button {
   border-top-left-radius: 0.5rem;
   border-top-right-radius: 0.5rem;
 }
-.meal .meal-body {
+.meals .meal-body {
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 0.5rem 1rem 1rem;
 }
-.meal .meal-body h4 {
+.meals .meal-body h4 {
   font-size: 1.2rem;
 }
-.meal .meal-body .fav-btn {
+.meals .meal-body .fav-btn {
   background-color: transparent;
   border: none;
   color: #b9b1b1;
   cursor: pointer;
   font-size: 1.2rem;
 }
-.meal .meal-body .fav-btn .active {
+.meals .meal-body .fav-btn .active {
   color: #663399;
 }/*# sourceMappingURL=style.css.map */
