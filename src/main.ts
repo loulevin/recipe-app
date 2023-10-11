@@ -95,9 +95,6 @@ function addMeal(mealData: any, random = false) {
     fetchFavMeals();
   });
 
-  meal.addEventListener("click", () => {
-    showMealInfo(mealData);
-  });
 
   mealsEl.appendChild(meal);
 }
@@ -166,7 +163,7 @@ searchBtn.addEventListener("click", async () => {
 
   if (meals) {
     mealsEl.innerHTML = "";
-    meals.forEach((meal) => {
+    meals.forEach((meal: any) => { // add type annotation to meal parameter
       addMeal(meal);
     });
   }
